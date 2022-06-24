@@ -1,0 +1,20 @@
+---
+- name: Intall docker and kubernetes
+  hosts: all
+  become: yes
+  roles:
+    - docker
+    - kube-user
+    - kube-file
+
+- name: Master deployement 
+  hosts: target1
+  become: yes
+  roles:
+    - kube-master
+
+- name: Worker deployment
+  hosts: target2
+  become: yes
+  roles:
+    - kube-worker
